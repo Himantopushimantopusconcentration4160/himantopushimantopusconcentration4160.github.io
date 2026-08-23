@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enforcement Operations Simulator — Brenda Ong</title>
+<meta name="description" content="A discrete-event simulation of a Trust &amp; Safety enforcement queue, plus the written operating model it exists to test.">
+<link rel="canonical" href="https://brendaong.com/work/enforcement-ops-simulator.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Enforcement Operations Simulator">
+<meta property="og:description" content="The aggregate SLA number is structurally incapable of showing you a failure.">
+<meta property="og:image" content="https://brendaong.com/assets/img/work/eos-sla.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317140F'/><text y='72' x='50' text-anchor='middle' font-family='Helvetica,Arial' font-weight='600' font-size='60' fill='%23B26136'>B</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="../">Brenda&nbsp;Ong<span class="dot">.</span></a>
+    <ul class="nav__links">
+      <li><a href="../#focus">Focus</a></li>
+      <li><a href="../#work">Work</a></li>
+      <li><a href="../#experience">Experience</a></li>
+      <li><a href="../#education">Education</a></li>
+      <li><a href="../#writing">Writing</a></li>
+    </ul>
+    <a class="nav__cta" href="../#contact">Get in touch</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <header class="cs__head wrap">
+    <a class="cs__back" href="../#work">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All projects
+    </a>
+    <div class="project__kind" style="margin-bottom:1rem;">Project 04 · Discrete-event simulation · Operating model · Python</div>
+    <h1>Enforcement Operations Simulator</h1>
+    <p class="cs__lead">
+      A human-review operation is a system you can design and tune quantitatively, not a
+      thing you staff up and hope about. Severity thresholds, routing rules, shift
+      coverage, SLA targets, QA sampling, escalation triggers and appeal load all
+      interact — and most of the interactions are non-obvious.
+    </p>
+
+    <div class="cs__facts">
+      <div class="cs__fact"><b>1,700</b><span>Alerts/day modelled</span></div>
+      <div class="cs__fact"><b>7</b><span>Generated analyses</span></div>
+      <div class="cs__fact"><b>82</b><span>Tests</span></div>
+      <div class="cs__fact"><b>4,100</b><span>Lines of Python</span></div>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="wrap prose">
+
+      <h2>What it models</h2>
+      <p>
+        A 1,700-alert/day Trust &amp; Safety enforcement queue, end to end: arrival bursts,
+        classifier scores, routing thresholds, shift coverage, reviewer fatigue and
+        anchoring, SLA escalation, QA sampling, and appeals — so that operating decisions
+        can be argued with numbers.
+      </p>
+      <p>
+        Nothing in the reports is hand-written prose over hand-typed numbers. Every figure,
+        table and sentence is interpolated from the same dataframes the simulation
+        produces, so the analysis cannot drift away from the model. The 82 tests assert
+        engine invariants and the <em>direction</em> of every headline finding.
+      </p>
+      <p>
+        Alongside the simulator sits the written operating model it exists to test: a
+        severity matrix, decision tree, escalation paths, calibration cadence, an AAR
+        template and a worked AAR.
+      </p>
+
+      <h2>Six findings</h2>
+
+      <h3>1. The aggregate SLA number is structurally incapable of showing you a failure</h3>
+      <div class="callout">
+        <p>
+          The modelled operation posts <b>98.6% aggregate attainment while missing its P1
+          target outright</b> — 93.1% against a 95% commitment.
+        </p>
+        <p>
+          P2 and P3 are 88% of volume and always clear their generous targets, so they set
+          the headline regardless of what happens in the bands that matter.
+          <b>Report by band or do not report.</b>
+        </p>
+      </div>
+
+      <figure>
+        <img src="../assets/img/work/eos-sla.jpg" alt="SLA attainment by severity band showing P1 missing target while aggregate passes" loading="lazy" width="982" height="543">
+        <figcaption>SLA attainment by severity band. The aggregate hides the only miss.</figcaption>
+      </figure>
+
+      <h3>2. A 5-point classifier precision drop costs 2.8 reviewer-hours a day — and that is the smallest of the three costs</h3>
+      <p>
+        The same regression costs <strong>1.8 points of human decision accuracy</strong>,
+        because reviewers are anchored by the score in front of them and a worse model
+        produces more confidently wrong scores. Fund the 0.47 FTE and you have paid for the
+        cheapest third of the damage.
+      </p>
+
+      <h3>3. The classifier threshold is not an SLA lever, and the 15-minute P0 SLA never breaks</h3>
+      <p>
+        Sweeping the bulk auto-close threshold moves utilisation across 33 points —
+        comfortable to saturated — and shifts P0 attainment by 0.5 points. Strict priority
+        with a shared reviewer pool insulates urgent work from bulk volume almost
+        completely.
+      </p>
+      <p>
+        P0 is bound by how long the review honestly takes, not by the queue. You cannot buy
+        P0 attainment with headcount or by shedding load, and <strong>a target set above
+        that handle-time ceiling is one nobody can ever hit.</strong>
+      </p>
+
+      <h3>4. Uniform QA sampling cannot detect single-reviewer policy drift at any affordable rate; stratified sampling does it at 5%</h3>
+      <p>
+        Auditing one decision in two, uniformly, still reaches only <strong>21.8% power</strong>
+        to catch it within a week — while a stratified design at 5% reaches <strong>94%</strong>
+        with a 3-day median lag. The signal lives in about 6% of volume, and pooling dilutes
+        it faster than it accumulates.
+      </p>
+
+      <figure>
+        <img src="../assets/img/work/eos-qa.jpg" alt="QA sampling power curves comparing uniform and stratified sampling designs" loading="lazy" width="1400" height="458">
+        <figcaption>Detection power for single-reviewer drift: uniform versus stratified sampling.</figcaption>
+      </figure>
+
+      <h3>5. Coverage shape is a free lever, and it is being left on the table</h3>
+      <p>
+        The same 19 people moved from a 5/6/8 shift split to 2/6/11 take P1 — the binding
+        band — from 93.1% to 94.5%. That is <strong>1.4 of the 1.9 points the operation is
+        short, at zero cost.</strong>
+      </p>
+      <p>
+        It does not close the gap alone, and the residual is a genuine headcount ask
+        (2 reviewers, roughly $166,440/year) — but it should be sized against the re-cut
+        roster, not the inherited one.
+      </p>
+
+      <h3>6. The obvious escalation rule breaks the thing it protects</h3>
+      <p>
+        Promoting aging items without a ceiling lets them reach P0, so imminent-harm
+        reports queue behind merely-old ones. Adding a guard rank — <strong>one config
+        line</strong> — is worth 25 points of P0 SLA at 12× burst load.
+      </p>
+
+      <h2>Why I built it</h2>
+      <p>
+        I ran police operations where deployment, resourcing and response-time commitments
+        had to be defended with data rather than asserted. Enforcement queues are the same
+        class of problem wearing different clothes: finite skilled reviewers, non-uniform
+        severity, hard time commitments, and a strong institutional pull toward reporting
+        the number that looks best.
+      </p>
+      <p>
+        Most of these findings are things an experienced operations lead half-knows. The
+        value is in being able to put a number on them, and in the two that run against
+        intuition — the QA sampling result and the escalation rule.
+      </p>
+
+      <div class="contact__actions" style="margin-top:2.5rem;">
+        <a class="btn" href="https://github.com/bibiong/enforcement-ops-simulator" target="_blank" rel="noopener">
+          View repository
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2h8v8M14 2L5 11M11 9v5H2V5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section dark section--tight">
+    <div class="wrap">
+      <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1rem;">Back to the start</h2>
+      <p style="max-width:56ch;margin-bottom:1.75rem;">
+        Eight frontier-lab threat reports, coded like threat intelligence — and the
+        technique the whole field is converging on that no framework has a name for.
+      </p>
+      <a class="btn" href="ai-misuse-atlas.html">
+        AI Misuse Threat Intelligence Atlas
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="foot">
+      <div>© <span id="yr">2026</span> Brenda Ong · Singapore</div>
+      <div class="foot__links">
+        <a href="mailto:bihuiong@outlook.com">Email</a>
+        <a href="https://www.linkedin.com/in/brenda-ong-4655aa3a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/bibiong" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </footer>
+  </div>
+
+</main>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

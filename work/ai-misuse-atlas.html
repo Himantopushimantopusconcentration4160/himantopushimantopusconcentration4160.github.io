@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Misuse Threat Intelligence Atlas — Brenda Ong</title>
+<meta name="description" content="Eight frontier-lab threat reports turned into 55 structured, cited operation records coded against a purpose-built kill chain and a verified MITRE ATLAS mapping.">
+<link rel="canonical" href="https://brendaong.com/work/ai-misuse-atlas.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Misuse Threat Intelligence Atlas">
+<meta property="og:description" content="The most converged technique in the public record of AI misuse is translation — and MITRE ATLAS has no technique for it.">
+<meta property="og:image" content="https://brendaong.com/assets/img/work/atlas-convergence.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317140F'/><text y='72' x='50' text-anchor='middle' font-family='Helvetica,Arial' font-weight='600' font-size='60' fill='%23B26136'>B</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="../">Brenda&nbsp;Ong<span class="dot">.</span></a>
+    <ul class="nav__links">
+      <li><a href="../#focus">Focus</a></li>
+      <li><a href="../#work">Work</a></li>
+      <li><a href="../#experience">Experience</a></li>
+      <li><a href="../#education">Education</a></li>
+      <li><a href="../#writing">Writing</a></li>
+    </ul>
+    <a class="nav__cta" href="../#contact">Get in touch</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <header class="cs__head wrap">
+    <a class="cs__back" href="../#work">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All projects
+    </a>
+    <div class="project__kind" style="margin-bottom:1rem;">Project 01 · Threat intelligence · Taxonomy · Python</div>
+    <h1>AI Misuse Threat Intelligence Atlas</h1>
+    <p class="cs__lead">
+      What does the public record of AI misuse actually say, if you code it like
+      threat intelligence instead of reading it like news?
+    </p>
+
+    <div class="cs__facts">
+      <div class="cs__fact"><b>55</b><span>Operations coded</span></div>
+      <div class="cs__fact"><b>8</b><span>Source publications</span></div>
+      <div class="cs__fact"><b>252</b><span>Technique instances</span></div>
+      <div class="cs__fact"><b>25%</b><span>Covered by MITRE ATLAS</span></div>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="wrap prose">
+
+      <h2>The problem</h2>
+      <p>
+        Every frontier lab and several platform vendors now publish threat reports on how
+        their models are being abused. The reports are detailed and largely unstructured —
+        narrative case studies, inconsistent between publishers, with no shared taxonomy
+        and no way to ask a question across them.
+      </p>
+      <p>
+        So the field has a growing pile of good primary evidence that nobody can query.
+        You can read any single report. You cannot ask what all of them say together.
+      </p>
+
+      <h2>What I built</h2>
+      <p>
+        Eight publications from OpenAI, Anthropic, Google Threat Intelligence Group and
+        Meta, turned into <strong>55 structured, individually cited operation records</strong>,
+        coded against a purpose-built kill chain and a verified MITRE ATLAS mapping.
+        Everything in <code>reports/</code> is generated from <code>data/</code> by
+        <code>make build</code> — no figure was typed by hand, so the analysis cannot
+        drift away from the evidence.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Publisher</th><th>Publication</th><th class="num-col">Operations</th></tr></thead>
+          <tbody>
+            <tr><td>OpenAI</td><td>Disrupting malicious uses of AI — June 2025</td><td class="num-col">10</td></tr>
+            <tr><td>OpenAI</td><td>Disrupting malicious uses of AI — October 2025</td><td class="num-col">13</td></tr>
+            <tr><td>OpenAI</td><td>Disrupting malicious uses of our models — February 2026</td><td class="num-col">7</td></tr>
+            <tr><td>Anthropic</td><td>Detecting and countering malicious uses of Claude — March 2025</td><td class="num-col">4</td></tr>
+            <tr><td>Anthropic</td><td>Detecting and countering misuse of AI — August 2025</td><td class="num-col">10</td></tr>
+            <tr><td>Anthropic</td><td>First reported AI-orchestrated cyber espionage campaign</td><td class="num-col">1</td></tr>
+            <tr><td>Google GTIG</td><td>AI Threat Tracker — November 2025</td><td class="num-col">10</td></tr>
+            <tr><td>Meta</td><td>Adversarial Threat Report Q2–Q3 2025</td><td class="num-col">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.88rem;color:var(--ink-3);">
+        Meta's zero is a measured result rather than an omission: it reports networks
+        without the AI-specific fields needed to code an operation.
+      </p>
+
+      <h2>The finding</h2>
+      <div class="callout">
+        <p><b>The most widely converged technique in the public record of AI misuse is translation.</b></p>
+        <p>
+          Cross-language lure localisation appears in <b>20 of 55 operations (36%)</b> —
+          across 5 of 7 actor types, 5 of 8 objectives, and all three contributing
+          publishers. Its convergence score leads the next technique by 43%.
+        </p>
+      </div>
+      <p>
+        A Cambodian scam compound, an Iranian influence operation, a North Korean
+        crypto-theft group and a PRC espionage cluster are all doing the same thing.
+      </p>
+      <p>
+        It is also the direct counter-measure to the oldest fraud-detection signal there
+        is. Bad language has been the first-pass filter for advance-fee fraud, phishing
+        and romance scams for thirty years, and the language-and-script signal is
+        countered in 20 operations — more adversarial pressure than any other signal in
+        the corpus carries.
+      </p>
+      <p><strong>MITRE ATLAS has no technique for it. Neither does ATT&amp;CK.</strong></p>
+
+      <figure>
+        <img src="../assets/img/work/atlas-convergence.jpg" alt="Bar chart of technique convergence scores across the corpus, with cross-language lure localisation leading" loading="lazy" width="1400" height="800">
+        <figcaption>Technique convergence across actor types, objectives and publishers. Generated from the coded dataset.</figcaption>
+      </figure>
+
+      <h2>Three more results</h2>
+
+      <h3>MITRE ATLAS covers a quarter of documented AI misuse</h3>
+      <p>
+        Of 252 coded technique instances, <strong>25.0% map to any ATLAS technique</strong>
+        and 19.8% map cleanly. Two kill-chain phases have zero coverage: persona and asset
+        fabrication — present in 47% of operations, spanning all seven actor types — and
+        criminal back-office use.
+      </p>
+      <p>
+        This is not a defect in ATLAS. ATLAS models attacks <em>on</em> AI systems, and most
+        documented misuse is use <em>of</em> AI systems against a third party. But it means
+        "we cover the ATLAS matrix" says nothing about three quarters of what actually
+        happens.
+      </p>
+
+      <figure>
+        <img src="../assets/img/work/atlas-killchain.jpg" alt="Kill-chain phase coverage chart showing zero ATLAS coverage for persona fabrication and criminal back-office phases" loading="lazy" width="1400" height="642">
+        <figcaption>Kill-chain phase coverage. Two phases carry no ATLAS mapping at all.</figcaption>
+      </figure>
+
+      <h3>The uplift story is real but rare</h3>
+      <p>
+        Commentary on these reports is dominated by models writing malware and running
+        intrusions. Thirteen of 55 operations sit at the top two rungs of the role ladder —
+        and <strong>every long-established intrusion set in the corpus (APT5, APT15, APT41,
+        UNC4899) is coded at the bottom rung</strong>. Where uplift appears among state
+        actors it is in newer, agentic activity, not in the mature groups. The modal
+        operation is an ordinary criminal or influence enterprise buying fluency it could
+        not previously hire.
+      </p>
+
+      <h3>The broadest detection signal is the most contested</h3>
+      <p>
+        Prompt-content classification has the highest generalisation score (0.925) and the
+        second-lowest durability (1.33): it detects 16 operations against behavioural
+        clustering's 35, and 11 operations deploy a documented counter-measure against it.
+        Request-rate anomaly detection has <strong>no observed counter-measure at all</strong> —
+        evading it means surrendering the speed the adversary went agentic to get — and it
+        caught the most advanced operation in the dataset.
+      </p>
+
+      <h2>The flagship analysis: Southeast Asian scam compounds</h2>
+      <p>
+        This is the reason the framework carries a phase no other kill chain has.
+        <strong>Operational Sustainment</strong> exists because of a Myanmar scam centre that
+        used a model to organise schedules, draft internal announcements, allocate desks and
+        dormitories, and manage financial accounts — while some operators asked about the
+        criminal penalties for running online scams.
+      </p>
+      <p>
+        None of that is an attack on anyone. It is an enterprise administering itself, and
+        no existing framework has anywhere to put it.
+      </p>
+      <p>
+        A Cambodian romance operation — the widest record in the corpus at 15 techniques
+        across 6 phases — confirmed the pattern: KPI tracking across departments named
+        "Lead Generation", "Reception Team" and "Supervisor Team"; translation between
+        Chinese-speaking supervisors and Indonesian-speaking workers; daily reports
+        assigning each target a value.
+      </p>
+
+      <div class="callout">
+        <p><b>Two operational readings the source reports leave on the table:</b></p>
+        <p>
+          <b>Dormitory allocation identifies the labour model.</b> Compounds house their
+          workforce because a meaningful share of it is not free to leave.
+        </p>
+        <p>
+          <b>The back office is the highest-precision detection surface in the corpus.</b>
+          A romance message and a love letter are the same object, which is why content
+          classification struggles. A scam-centre duty roster is not ambiguous at all —
+          there is no benign population generating those prompts.
+        </p>
+      </div>
+
+      <figure>
+        <img src="../assets/img/work/atlas-compounds.jpg" alt="Kill-chain phase profile for scam compound operations" loading="lazy" width="1400" height="770">
+        <figcaption>Scam-compound kill-chain profile, including the Operational Sustainment phase added for this corpus.</figcaption>
+      </figure>
+
+      <p>
+        I worked cyber-enabled fraud as a police officer, which is where the organisational
+        reading comes from. Every factual claim is cited to a published report and coded in
+        the dataset; interpretation is marked as mine throughout.
+      </p>
+
+      <h2>Also visible: an entire industry seen through one company's reporting choices</h2>
+      <p>
+        All 7 scam-compound operations, and all 3 operations touching the criminal back
+        office, come from a single publisher. Cambodia has twice as many recorded
+        operations as Iran — found by one company. What the public record contains is
+        partly a fact about adversaries and partly a fact about who chose to write it down.
+      </p>
+
+      <div class="callout">
+        <p><b>Repository publishing shortly.</b> The code and the full coded dataset go public alongside the reports.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section dark section--tight">
+    <div class="wrap">
+      <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1rem;">Next project</h2>
+      <p style="max-width:56ch;margin-bottom:1.75rem;">
+        Structured after-action reviews of public AI safety incidents — and the finding
+        that 11 of 12 were surfaced by someone outside the organisation that built the
+        system.
+      </p>
+      <a class="btn" href="ai-incident-aar-library.html">
+        AI Incident After-Action Library
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="foot">
+      <div>© <span id="yr">2026</span> Brenda Ong · Singapore</div>
+      <div class="foot__links">
+        <a href="mailto:bihuiong@outlook.com">Email</a>
+        <a href="https://www.linkedin.com/in/brenda-ong-4655aa3a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/bibiong" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </footer>
+  </div>
+
+</main>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
