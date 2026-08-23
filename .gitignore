@@ -1,1 +1,4 @@
 .DS_Store
+
+# Editable CV sources — not published (docx carries author metadata / edit history)
+assets/cv/*.docx
