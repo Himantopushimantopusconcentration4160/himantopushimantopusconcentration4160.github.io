@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APAC Regulatory Readiness — Brenda Ong</title>
+<meta name="description" content="A maintained tracker of platform regulation across ten APAC jurisdictions, and the measured finding that AI obligation-extraction misses the carve-outs that cost the most.">
+<link rel="canonical" href="https://brendaong.com/work/apac-regulatory-readiness.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APAC Regulatory Readiness">
+<meta property="og:description" content="Models find the obligation and miss the exemption — 0 of 5 on threshold conditions and transitional deferrals.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317140F'/><text y='72' x='50' text-anchor='middle' font-family='Helvetica,Arial' font-weight='600' font-size='60' fill='%23B26136'>B</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="../">Brenda&nbsp;Ong<span class="dot">.</span></a>
+    <ul class="nav__links">
+      <li><a href="../#focus">Focus</a></li>
+      <li><a href="../#work">Work</a></li>
+      <li><a href="../#experience">Experience</a></li>
+      <li><a href="../#education">Education</a></li>
+      <li><a href="../#writing">Writing</a></li>
+    </ul>
+    <a class="nav__cta" href="../#contact">Get in touch</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <header class="cs__head wrap">
+    <a class="cs__back" href="../#work">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All projects
+    </a>
+    <div class="project__kind" style="margin-bottom:1rem;">Project 05 · Regulatory program management · Evaluation · Python</div>
+    <h1>APAC Regulatory Readiness</h1>
+    <p class="cs__lead">
+      Europe's regulatory difficulty is depth. Asia-Pacific's is concurrency — and
+      concurrency is a program-management problem before it is a legal one.
+    </p>
+
+    <div class="cs__facts">
+      <div class="cs__fact"><b>17</b><span>Instruments tracked</span></div>
+      <div class="cs__fact"><b>10</b><span>Jurisdictions</span></div>
+      <div class="cs__fact"><b>0/5</b><span>Models finding threshold carve-outs</span></div>
+      <div class="cs__fact"><b>4→1</b><span>Models fabricating, v1 → v2</span></div>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="wrap prose">
+
+      <h2>The problem this is built around</h2>
+      <p>
+        APAC has no DSA. No single instrument, no single regulator, no harmonised reporting
+        calendar — instead roughly a dozen sovereign regimes converging on the same four
+        themes from different legal traditions and at different speeds.
+      </p>
+      <p>
+        The operational consequence is that one product change can trigger obligations in
+        eight jurisdictions with eight deadlines, eight evidentiary standards, and eight
+        regulators who do not coordinate with each other. India runs a
+        <strong>three-hour</strong> statutory takedown clock. Australia runs an effort
+        standard where the evidence trail <em>is</em> the compliance position. Korea attaches
+        personal liability to a company officer.
+      </p>
+      <div class="callout">
+        <p>
+          <b>A three-hour clock is not a policy question. It is a staffing and tooling question.</b>
+        </p>
+        <p>
+          You cannot convene a cross-functional review in three hours, so the work has to move
+          upstream — pre-agreed decision rights, a named on-call owner per surface, and a
+          pre-approved decision tree, so the person on shift at 2am is executing a decision
+          that was already made rather than making one.
+        </p>
+      </div>
+
+      <h2>Four parts, because a tracker alone is a list</h2>
+      <p>
+        A structured dataset of the regulation; the reactive workflow that responds to
+        regulators; a toolkit of AI prompts with the measurement attached; and a readiness
+        framework that turns an obligation into a dated, owned, costed plan.
+      </p>
+      <p>
+        The parts are joined, not adjacent. An inquiry record references the tracker
+        instrument it arises under. The readiness assessment pulls its likelihood scores from
+        the tracker's recorded enforcement signals. The consistency-check prompt runs at a
+        named stage of the response plan.
+      </p>
+
+      <h2>The finding</h2>
+      <div class="callout">
+        <p><b>The models find the obligation and miss the exemption.</b></p>
+        <p>
+          Across five open-weight models, F1 on obligation extraction runs 0.79–0.96 — which
+          reads as solved. Carve-out recall on the same runs is <strong>0.00–0.50</strong>.
+        </p>
+      </div>
+      <p>And the failure is not random. It splits on the <em>grammar</em> of the carve-out:</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Carve-out expressed as</th><th>Example</th><th class="num-col">Models capturing it</th></tr></thead>
+          <tbody>
+            <tr><td>Explicit</td><td><em>"does not apply to…"</em></td><td class="num-col">4 / 5</td></tr>
+            <tr><td>Exception clause</td><td><em>"…unless the direction has been varied"</em></td><td class="num-col">3 / 5</td></tr>
+            <tr><td><strong>Threshold condition</strong></td><td><em>"more than 100,000 monthly users"</em></td><td class="num-col"><strong>0 / 5</strong></td></tr>
+            <tr><td><strong>Transitional deferral</strong></td><td><em>"periods commencing on or after 1 July 2027"</em></td><td class="num-col"><strong>0 / 5</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Where the text announces a carve-out using carve-out vocabulary, models find it. Where
+        the limit is carried by a threshold or a commencement date, <strong>no model in the set
+        found it, at any parameter count.</strong> Scaling from 3B to 14B does not help,
+        because this is not a capacity problem — the models are classifying text that
+        <em>looks like</em> an exception, and treating everything else as scope-setting prose.
+      </p>
+      <p>
+        Both missed forms are the expensive ones. A missed <strong>threshold</strong>
+        over-scopes compliance, funding remediation for a population the law excludes. A
+        missed <strong>deferral</strong> puts a phantom 2027 deadline into a 2026 plan, where
+        it competes for the same engineers as a real one.
+      </p>
+      <div class="callout">
+        <p>
+          A missed obligation gets caught in legal review, because counsel is reading for what
+          the platform must do. <b>A missed carve-out is far more likely to survive review</b>,
+          because the output is not wrong about the duty — only about its edges.
+        </p>
+      </div>
+      <p>
+        Separately, and despite an explicit instruction not to:
+        <strong>5 of 5 models extracted a duty imposed on a Minister as a platform
+        obligation.</strong> Recall is unaffected, so the output looks complete — and the
+        spurious row is a duty belonging to a government ministry.
+      </p>
+
+      <h2>What the prompt engineering actually bought</h2>
+      <p>
+        The superseded prompt ships alongside the current one and is runnable, so the
+        comparison reproduces rather than has to be believed.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Measure</th><th>v1 → v2</th></tr></thead>
+          <tbody>
+            <tr><td>Fabricated an obligation on text containing none</td><td><strong>4/5 models → 1/5</strong></td></tr>
+            <tr><td>F1</td><td>improved on 3 models, <strong>regressed on 2</strong></td></tr>
+            <tr><td>Trigger fidelity — what rule 6 targets</td><td>improved on 2, <strong>fell on 3</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        One guardrail worked cleanly. A single sentence telling the model that an empty list
+        is a correct and preferred answer removed the fabrication failure on every model but
+        the smallest. The other did not: the rule written specifically to protect trigger
+        fidelity made it <em>worse</em> on three of five models, including a fall from 0.89 to
+        0.50 on a top-scoring model.
+      </p>
+      <div class="callout">
+        <p>
+          <code>mistral-nemo:12b</code> was the <b>best</b> model under v1 and the guardrails
+          made it the second worst, taking its carve-out recall from 0.25 to 0.00.
+        </p>
+        <p>
+          Evaluated on one model, v2 would have been reported as a clean improvement.
+          Evaluated on five, it is a trade — and the rule that failed is documented as failing
+          rather than quietly retained as a success.
+        </p>
+      </div>
+
+      <h2>Two things the tooling found that a document would not</h2>
+      <p>
+        <strong>The weekend-arrival trap.</strong> The timeline generator plans backwards from
+        a deadline in working hours rather than calendar days. A notice arriving Friday
+        evening with a Tuesday deadline shows 95 calendar hours and
+        <strong>17 working hours</strong> — 18% of elapsed time. The calendar reads
+        comfortable; the budget does not. The decision between requesting an extension and
+        standing up out-of-hours cover has to be made Friday evening, when both options are
+        still cheap.
+      </p>
+      <p>
+        <strong>Plans that are individually achievable and collectively impossible.</strong>
+        In the worked readiness assessment, every obligation has positive float against the
+        enforcement deadline. The framework still fails it — because two of the six
+        workstreams share one owner, whose serialised workload is 20 weeks against 19
+        available. Every row looks fine, which is exactly why this failure mode survives
+        review.
+      </p>
+
+      <h2>What it does not claim</h2>
+      <p>
+        The repository was created in August 2026 and does not claim a long history of
+        sustained monitoring. What it has is the machinery that makes monitoring cheap —
+        schema, validator, link checker, staleness warnings, changelog discipline — so the
+        history accrues from that date and is checkable in the commit log.
+      </p>
+      <p>
+        Jurisdiction depth is deliberately uneven and documented as such: three depth
+        jurisdictions, five working, two monitor-only. Claiming equal command of ten
+        jurisdictions is a claim no individual can support. The validator enforces the same
+        honesty at entry level — <strong>an entry's confidence rating may not exceed the
+        strength of the sources actually cited</strong>, a rule which caught a genuine
+        overclaim of mine during the build.
+      </p>
+      <p>
+        It is not legal advice, it is unaffiliated with any employer, and the worked examples
+        are fictional and labelled.
+      </p>
+
+      <p style="margin-top:2rem;">
+        <a class="btn" href="https://github.com/bibiong/apac-regulatory-readiness" target="_blank" rel="noopener">
+          Repository and live tracker
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </p>
+
+    </div>
+  </section>
+
+  <section class="section dark section--tight">
+    <div class="wrap">
+      <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1rem;">Back to the start</h2>
+      <p style="max-width:56ch;margin-bottom:1.75rem;">
+        Eight frontier-lab threat reports, coded like threat intelligence — and the
+        technique the whole field is converging on that no framework has a name for.
+      </p>
+      <a class="btn" href="ai-misuse-atlas.html">
+        AI Misuse Threat Intelligence Atlas
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="foot">
+      <div>© <span id="yr">2026</span> Brenda Ong · Singapore</div>
+      <div class="foot__links">
+        <a href="mailto:bihuiong@outlook.com">Email</a>
+        <a href="https://www.linkedin.com/in/brenda-ong-4655aa3a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/bibiong" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </footer>
+  </div>
+
+</main>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
