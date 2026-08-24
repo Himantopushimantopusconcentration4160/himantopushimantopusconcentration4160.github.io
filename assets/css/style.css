@@ -335,6 +335,10 @@ p:last-child { margin-bottom: 0; }
   transition: border-color .25s var(--ease), gap .25s var(--ease);
 }
 .lane__cv:hover { border-bottom-color: var(--accent); gap: .7rem; }
+/* Second link in a lane: points at the project that evidences the claim above.
+   Subordinate to the CV download, which stays the lane's primary action. */
+.lane__proof { margin-top: .55rem; color: var(--ink-2); }
+.lane__proof:hover { color: var(--accent-deep); }
 .lane__cv svg { flex: none; }
 
 @media (max-width: 900px) {
