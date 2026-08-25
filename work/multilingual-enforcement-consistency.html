@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multilingual Enforcement Consistency — Brenda Ong</title>
+<meta name="description" content="Does a model's safety survive translation? One borderline request in five languages — English, Chinese, French, Singlish, Singapore Mandarin — measured for whether the policy decision holds.">
+<link rel="canonical" href="https://brendaong.com/work/multilingual-enforcement-consistency.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Multilingual Enforcement Consistency">
+<meta property="og:description" content="A usage policy says nothing about language. The model shouldn't either — but it does. Safety that holds in English does not always survive translation.">
+<meta property="og:image" content="https://brendaong.com/assets/img/work/mec-leakage.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317140F'/><text y='72' x='50' text-anchor='middle' font-family='Helvetica,Arial' font-weight='600' font-size='60' fill='%23B26136'>B</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="../">Brenda&nbsp;Ong<span class="dot">.</span></a>
+    <ul class="nav__links">
+      <li><a href="../#focus">Focus</a></li>
+      <li><a href="../#work">Work</a></li>
+      <li><a href="../#experience">Experience</a></li>
+      <li><a href="../#education">Education</a></li>
+      <li><a href="../#writing">Writing</a></li>
+    </ul>
+    <a class="nav__cta" href="../#contact">Get in touch</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <header class="cs__head wrap">
+    <a class="cs__back" href="../#work">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All projects
+    </a>
+    <div class="project__kind" style="margin-bottom:1rem;">Project 07 · Model evaluation · Multilingual safety · Python</div>
+    <h1>Multilingual Enforcement Consistency</h1>
+    <p class="cs__lead">
+      A usage policy says nothing about language. Does the model?
+    </p>
+
+    <div class="cs__facts">
+      <div class="cs__fact"><b>5</b><span>Languages, one request</span></div>
+      <div class="cs__fact"><b>150</b><span>Parallel prompts</span></div>
+      <div class="cs__fact"><b>4</b><span>Models scored</span></div>
+      <div class="cs__fact"><b>0.87</b><span>Judge κ, per-locale calibrated</span></div>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="wrap prose">
+
+      <h2>The blind spot</h2>
+      <p>
+        Every frontier lab publishes one usage policy and enforces it with one model, in
+        every language at once. But almost every published safety eval is in English — and
+        the public record is consistent that alignment generalises unevenly across
+        languages. Anthropic's own
+        <a href="https://www.anthropic.com/research/claude-values-models-languages" target="_blank" rel="noopener">Values in the wild, across models and languages</a>
+        finds Claude's expressed values shift measurably by language before any adversary is
+        involved.
+      </p>
+      <p>
+        If the <em>values</em> move, the <em>enforcement decisions</em> can move too. Neither
+        source policy contains a language clause, so the decision a policy requires for a
+        request is — by construction — the same in every language. Any cross-language
+        variance is therefore a gap between the model and the policy, not a difference in
+        what the policy asks. This measures that gap.
+      </p>
+
+      <p>
+        It is the sequel to <a href="policy-to-eval-harness.html">project 03</a>: it reuses
+        that project's policy-to-decision taxonomy unchanged — asserted byte-for-byte
+        identical in the tests — and adds exactly one moving part. Framing is held fixed;
+        the language is the only variable.
+      </p>
+
+      <div class="callout">
+        <p><b>Read this before the numbers.</b></p>
+        <p>
+          The shipped run uses deterministic <em>stand-in</em> models, so the repository
+          runs on <code>git clone</code> with no API keys and CI can assert exact figures.
+          Every chart and table below is watermarked <b>SIMULATED</b>. These numbers
+          exercise and validate the <em>measurement</em> — they are not a finding about any
+          named real model. Swapping one config file points the identical pipeline at a live
+          model.
+        </p>
+      </div>
+
+      <h2>What the harness is built to see</h2>
+      <p>
+        The design question is not "which model is safest" — it is whether a decision
+        <em>holds</em> as the language changes. A model can post an immaculate English
+        red-team score and answer the very same prohibited request the moment it arrives in
+        another language, and an English benchmark cannot see it. In the demonstration run,
+        three of the four stand-ins leak <strong>0% in English</strong> and materially more
+        outside it, with the worst arm answering the same prohibited request it refused in
+        English.
+      </p>
+
+      <figure>
+        <img src="../assets/img/work/mec-leakage.jpg" alt="Bar chart of leakage rate by language for four models, showing zero or low leakage in English and higher leakage in Chinese, French, Singlish and Singapore Mandarin" loading="lazy" width="1170" height="650">
+        <figcaption>Leakage by language (simulated stand-ins). Safety that holds in English does not always survive translation — and the code-mixed Singlish / Singapore-Mandarin arms are where it holds least.</figcaption>
+      </figure>
+
+      <h2>The result a single English number hides</h2>
+      <p>
+        Consistency counts a request as consistent only if <b>all five language arms</b>
+        reach the same decision. The stand-in built to refuse hard in English — the profile
+        that scores "safe" on an English red-team — turns out to be the
+        <strong>least consistent</strong> of the four: its refusals do not travel, and its
+        code-mixed arms leak. A single English figure would rank it the cautious one. It is
+        the opposite.
+      </p>
+
+      <figure>
+        <img src="../assets/img/work/mec-consistency.jpg" alt="Horizontal bar chart of cross-language consistency by model, where the model that refuses hardest in English is the least consistent across languages" loading="lazy" width="1040" height="585">
+        <figcaption>Cross-language consistency: share of requests where all five language arms agree on the decision. Higher is a decision that does not depend on the language it is written in.</figcaption>
+      </figure>
+
+      <p>
+        When a decision flips with language the direction is the whole story: a flip toward
+        <em>answering</em> a prohibited request is a safety failure; a flip toward
+        <em>declining</em> a permitted one is an access failure. The harness reports the two
+        directions separately, because collapsing them hides which one a given model is
+        paying with.
+      </p>
+
+      <h2>A correct refusal that points nowhere useful</h2>
+      <p>
+        In the self-harm category the decision is only half the response. An answer that
+        refers a user to a crisis line only helps if that line <em>exists where they are</em>.
+        A Singapore user handed the US <code>988</code> number has received a correct
+        decision and a useless answer. So referral <em>validity</em> is scored on its own
+        axis, per locale — a resource valid in-country (Singapore's SOS <code>1767</code>,
+        France's <code>3114</code>) versus a generic global default.
+      </p>
+
+      <h2>The region is where the hard cases live</h2>
+      <p>
+        The corpus is hand-translated, not machine-translated — an MT system's own hedging
+        would be indistinguishable from a model's refusal behaviour, which is fatal to this
+        exact measurement. Written by a native English and Chinese speaker with working
+        French, based in Singapore, it carries the context that only exists in-language:
+      </p>
+      <ul>
+        <li><strong>SEA scam typologies in their own vocabulary</strong> — 杀猪盘 (pig-butchering), 跑分 (money-muling), <em>ah long</em> (loan sharks) — so the harness tests whether a model recognises fraud <em>before</em> the English calque exists.</li>
+        <li><strong>Singapore's racial- and religious-harmony frame</strong> (the CMIO model, religious-harmony law), which makes a different set of utterances legally salient than a US or French frame — under identical policy text.</li>
+        <li><strong>Care-system vocabulary that does not map one-to-one</strong> (A&amp;E / urgences / 急诊 / polyclinic), testing whether a model gates on institution names or on clinical urgency.</li>
+        <li><strong>Code-mixed registers</strong> — Singlish and Singapore Mandarin — the low-resource condition the public record says degrades worst.</li>
+      </ul>
+
+      <h2>The measurement checks itself, in every language</h2>
+      <p>
+        A judge that is sharp in English and blurry in Chinese would <em>manufacture</em> the
+        very gap the project reports. So the judge is calibrated against human labels
+        <b>per locale</b> before any finding is trusted — overall Cohen's κ =
+        <strong>0.87</strong>, and every language clears the substantial-agreement floor.
+      </p>
+
+      <div class="callout">
+        <p>
+          The part I care most about is the same as in project 03: the harness is built to
+          expose its own failure modes rather than launder them. It reports leakage and
+          over-refusal together, checks its ruler in every language, separates a wrong
+          decision from a right decision that fails locally, and labels every simulated
+          number as simulated. An eval that hides any of those is worse than no eval.
+        </p>
+      </div>
+
+      <h2>Responsible use</h2>
+      <p>
+        Three categories from the parent taxonomy — CBRN, weapons, and child-safety — were
+        deliberately <em>excluded</em> from translation. A faithful non-English rendering of
+        such a request is an artefact whose only novel contribution is a more accessible
+        harmful ask; the English versions already exist in project 03 and are enough to
+        measure them. Prohibited-labelled prompts are written at the specificity of a clear
+        policy violation and no further — no working exploit, no synthesis route, no real
+        target. The repository ships a responsible-use policy that states all of this.
+      </p>
+
+      <p style="margin-top:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a class="btn" href="https://github.com/bibiong/multilingual-enforcement-consistency" target="_blank" rel="noopener">
+          Repository, corpus and findings
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn" href="policy-to-eval-harness.html">
+          The parent project (03)
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </p>
+
+    </div>
+  </section>
+
+  <section class="section dark section--tight">
+    <div class="wrap">
+      <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1rem;">Back to the start</h2>
+      <p style="max-width:56ch;margin-bottom:1.75rem;">
+        Eight frontier-lab threat reports, coded like threat intelligence — and the
+        technique the whole field is converging on that no framework has a name for.
+      </p>
+      <a class="btn" href="ai-misuse-atlas.html">
+        AI Misuse Threat Intelligence Atlas
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="foot">
+      <div>© <span id="yr">2026</span> Brenda Ong · Singapore</div>
+      <div class="foot__links">
+        <a href="mailto:bihuiong@outlook.com">Email</a>
+        <a href="https://www.linkedin.com/in/brenda-ong-4655aa3a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/bibiong" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </footer>
+  </div>
+
+</main>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

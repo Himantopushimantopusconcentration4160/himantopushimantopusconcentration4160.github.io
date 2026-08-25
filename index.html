@@ -117,7 +117,7 @@
           <h3>AI Safety + Trust and Safety</h3>
           <p>
             Threat intelligence on AI misuse, information integrity, incident response,
-            and turning written policy into something you can actually measure. Four
+            and turning written policy into something you can actually measure. Five
             open research projects in this lane, built in the open with the code that
             produced the findings, plus a decade of counter-disinformation and
             enforcement operations behind them.
@@ -182,7 +182,7 @@
       <div class="eyebrow"><span class="num">02</span> <span>Selected projects</span></div>
 
       <p style="max-width:62ch;color:var(--ink-2);font-size:1.05rem;margin-bottom:2.5rem;">
-        Six open research projects. Each one asks a question the field talks about but
+        Seven open research projects. Each one asks a question the field talks about but
         rarely measures, and each ships the code that produced the answer — so the
         numbers can be checked rather than taken on trust.
       </p>
@@ -364,6 +364,39 @@
               <div class="stat"><b>13</b><span>Contradictions bought by 13 minutes</span></div>
               <div class="stat"><b>0/4</b><span>Deadlines met by stonewalling</span></div>
               <div class="stat"><b>12</b><span>Deterministic runs</span></div>
+            </div>
+            <div class="project__foot">
+              <span class="pill pill--live">Public repo</span>
+              <span class="arrow">Read the case study
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project" href="work/multilingual-enforcement-consistency.html" data-reveal>
+          <div class="project__head">
+            <div class="project__n">07</div>
+            <h3>Multilingual Enforcement Consistency</h3>
+            <div class="project__kind">Model evaluation · Multilingual safety · Python</div>
+          </div>
+          <div class="project__body">
+            <div class="finding">
+              <strong>A usage policy says nothing about language. The model shouldn't either — but it does.</strong>
+              <span>Safety that holds in English does not always survive translation, and an English-only eval is structurally blind to it.</span>
+            </div>
+            <p>
+              Takes the policy-to-decision taxonomy from project 03 and adds one variable:
+              the language a request arrives in. Thirty borderline prompts, hand-translated
+              into English, Chinese, French, Singlish and Singapore Mandarin — with the SEA
+              scam typologies, care-system vocabulary and racial-harmony framing that only
+              exist in-language — then measured for whether the same request gets the same
+              decision.
+            </p>
+            <div class="stats">
+              <div class="stat"><b>5</b><span>Languages, one request</span></div>
+              <div class="stat"><b>150</b><span>Parallel prompts</span></div>
+              <div class="stat"><b>0.87</b><span>Judge κ, per-locale calibrated</span></div>
             </div>
             <div class="project__foot">
               <span class="pill pill--live">Public repo</span>
