@@ -7,7 +7,7 @@
 
    ---- CONFIGURE ME -------------------------------------------------------
    Set mode to 'formspree' or 'googleform' and fill in the matching block.
-   While mode is 'none' the gate still appears but nothing is recorded.
+   While mode is 'none' the gate is fully disabled and CV links behave normally.
    ------------------------------------------------------------------------ */
 var CV_GATE_CONFIG = {
   mode: 'none',
@@ -92,6 +92,13 @@ var CV_GATE_CONFIG = {
     form = modal.querySelector('form');
     var submit = form.querySelector('button[type=submit]');
     submit.dataset.label = submit.textContent;
+
+    // Not configured yet? Stay out of the way entirely rather than adding
+    // friction that captures nothing.
+    if (CV_GATE_CONFIG.mode === 'none') {
+      console.info('[cv-gate] disabled (mode: none) — CV links behave normally.');
+      return;
+    }
 
     document.querySelectorAll('[data-cv]').forEach(function (link) {
       link.addEventListener('click', function (e) {
