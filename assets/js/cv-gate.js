@@ -5,20 +5,26 @@
    live at public URLs on static hosting, so anyone who reads the page source
    can fetch them directly. It captures ordinary visitors, not determined ones.
 
-   ---- CONFIGURE ME -------------------------------------------------------
-   Set mode to 'formspree' or 'googleform' and fill in the matching block.
-   While mode is 'none' the gate is fully disabled and CV links behave normally.
+   ---- CONFIGURATION ------------------------------------------------------
+   Live, posting to the "CV Downloads" Google Form -> responses spreadsheet.
+   Set mode to 'none' to switch the gate off; CV links then behave normally.
    ------------------------------------------------------------------------ */
 var CV_GATE_CONFIG = {
-  mode: 'none',
+  mode: 'googleform',
 
   // mode: 'formspree'  — paste the endpoint from your Formspree form
   formspreeEndpoint: 'https://formspree.io/f/XXXXXXXX',
 
   // mode: 'googleform' — the /formResponse URL plus each field's entry.N id
   googleForm: {
-    actionUrl: 'https://docs.google.com/forms/d/e/XXXXXXXX/formResponse',
-    fields: { name: 'entry.111', email: 'entry.222', company: 'entry.333', role: 'entry.444', cv: 'entry.555' }
+    actionUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdDrhmfNAz-cjq6hnTSJ99UDMhORznoReuYdu_aH4ywoiZsdg/formResponse',
+    fields: {
+      name:    'entry.1803741647',
+      email:   'entry.905624565',
+      company: 'entry.1218974156',
+      role:    'entry.1449106035',
+      cv:      'entry.1724597469'
+    }
   }
 };
 
@@ -61,6 +67,12 @@ var CV_GATE_CONFIG = {
       Object.keys(c.googleForm.fields).forEach(function (k) {
         if (data[k]) body.append(c.googleForm.fields[k], data[k]);
       });
+      // This form has "Collect email addresses" on, which adds a required
+      // Email field of Google's own. Omitting it makes the POST 400.
+      body.append('emailAddress', data.email);
+      body.append('fvv', '1');
+      body.append('pageHistory', '0');
+      body.append('submissionTimestamp', '-1');
       return fetch(c.googleForm.actionUrl, { method: 'POST', mode: 'no-cors', body: body });
     }
 
