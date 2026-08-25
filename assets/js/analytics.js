@@ -14,7 +14,7 @@
    GA_MEASUREMENT_ID: your GA4 ID, looks like 'G-XXXXXXXXXX'.
    While it is empty nothing loads, no banner shows, and no requests are made.
    ------------------------------------------------------------------------ */
-var GA_MEASUREMENT_ID = '';
+var GA_MEASUREMENT_ID = 'G-GTC8QREPKN';
 
 (function () {
   'use strict';
