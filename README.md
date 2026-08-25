@@ -46,3 +46,19 @@ same `View repository` button pattern used in
 
 **Design tokens.** Colours, type scale and spacing all live in `:root` at the
 top of `style.css`. The accent (`#B26136`) is sampled from the photography.
+
+## Making edits
+
+Edit files in this folder — it is the source of truth for the live site.
+
+```bash
+./preview.sh                 # local preview at localhost:8811, Ctrl-C to stop
+./publish.sh "what changed"  # commit + push; live in ~30-60s
+```
+
+Text lives in `index.html` (homepage) and `work/*.html` (case studies), marked
+with `<!-- ====== SECTION ====== -->` banners. Two rules: write `&amp;` not a
+bare `&`, and leave `class="..."` attributes alone.
+
+Do not edit files through the GitHub website as well as locally — the two copies
+will diverge and the next `./publish.sh` will fail.
