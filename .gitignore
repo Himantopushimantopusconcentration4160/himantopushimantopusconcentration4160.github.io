@@ -2,3 +2,6 @@
 
 # Editable CV sources — not published (docx carries author metadata / edit history)
 assets/cv/*.docx
+
+# Local safety backups of pre-edit CV PDFs (not published)
+assets/cv/_backup_tailored_pdfs/
