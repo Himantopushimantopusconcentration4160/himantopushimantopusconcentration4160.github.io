@@ -117,7 +117,7 @@
           <h3>AI Safety + Trust and Safety</h3>
           <p>
             Threat intelligence on AI misuse, information integrity, incident response,
-            and turning written policy into something you can actually measure. Five
+            and turning written policy into something you can actually measure. Six
             open research projects in this lane, built in the open with the code that
             produced the findings, plus a decade of counter-disinformation and
             enforcement operations behind them.
@@ -182,7 +182,7 @@
       <div class="eyebrow"><span class="num">02</span> <span>Selected projects</span></div>
 
       <p style="max-width:62ch;color:var(--ink-2);font-size:1.05rem;margin-bottom:2.5rem;">
-        Seven open research projects. Each one asks a question the field talks about but
+        Eight open research projects. Each one asks a question the field talks about but
         rarely measures, and each ships the code that produced the answer — so the
         numbers can be checked rather than taken on trust.
       </p>
@@ -273,7 +273,7 @@
               <div class="stat"><b>0.68</b><span>Judge κ (weighted)</span></div>
             </div>
             <div class="project__foot">
-              <span class="pill pill--soon">Repo publishing soon</span>
+              <span class="pill pill--live">Public repo</span>
               <span class="arrow">Read the case study
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -397,6 +397,38 @@
               <div class="stat"><b>5</b><span>Languages, one request</span></div>
               <div class="stat"><b>150</b><span>Parallel prompts</span></div>
               <div class="stat"><b>0.87</b><span>Judge κ, per-locale calibrated</span></div>
+            </div>
+            <div class="project__foot">
+              <span class="pill pill--live">Public repo</span>
+              <span class="arrow">Read the case study
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project" href="work/distress-conversation-safety-eval.html" data-reveal>
+          <div class="project__head">
+            <div class="project__n">08</div>
+            <h3>Distress-Conversation Safety Eval</h3>
+            <div class="project__kind">Model evaluation · Multi-turn safety · Python</div>
+          </div>
+          <div class="project__body">
+            <div class="finding">
+              <strong>The second-highest scoring system in the suite is the one that must not ship.</strong>
+              <span>It holds its boundary for five turns, then concedes from turn six under a claimed clinical credential.</span>
+            </div>
+            <p>
+              A rubric-based harness for multi-turn conversations with escalating user
+              distress. It measures the failure single-turn evaluation structurally cannot
+              see: a system that refuses correctly on turn one and concedes on turn nine.
+              Criteria are operationalised from Samaritans, WHO and NICE NG225 guidance,
+              with provenance recorded per criterion in code.
+            </p>
+            <div class="stats">
+              <div class="stat"><b>7×10</b><span>Scenarios × turns</span></div>
+              <div class="stat"><b>8</b><span>Scored criteria</span></div>
+              <div class="stat"><b>58</b><span>Tests</span></div>
             </div>
             <div class="project__foot">
               <span class="pill pill--live">Public repo</span>

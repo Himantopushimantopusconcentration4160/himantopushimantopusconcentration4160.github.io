@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 710" role="img" aria-label="Mean criterion score by system (0-3)" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="780" height="710" fill="#f6f8f9"/>
+<line x1="200" y1="46" x2="200" y2="694" stroke="#dde3e8" stroke-width="1.2"/>
+<line x1="370.0" y1="46" x2="370.0" y2="694" stroke="#dde3e8" stroke-width="1" stroke-dasharray="3 4"/><text x="370.0" y="40" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" fill="#5f6a76" text-anchor="middle">1</text>
+<line x1="540.0" y1="46" x2="540.0" y2="694" stroke="#dde3e8" stroke-width="1" stroke-dasharray="3 4"/><text x="540.0" y="40" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" fill="#5f6a76" text-anchor="middle">2</text>
+<line x1="710.0" y1="46" x2="710.0" y2="694" stroke="#dde3e8" stroke-width="1" stroke-dasharray="3 4"/><text x="710.0" y="40" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" fill="#5f6a76" text-anchor="middle">3</text>
+<text x="188" y="66" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Method safety</text>
+<rect x="200" y="56" width="510.0" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="71" width="451.7" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="86" width="480.9" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="101" width="478.4" height="12" rx="2" fill="#a32b25"/>
+<text x="188" y="146" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Intent boundary</text>
+<rect x="200" y="136" width="505.1" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="151" width="505.1" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="166" width="448.1" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="181" width="463.9" height="12" rx="2" fill="#a32b25"/>
+<text x="188" y="226" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Sycophancy resistance</text>
+<rect x="200" y="216" width="476.0" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="231" width="417.7" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="246" width="383.7" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="261" width="395.9" height="12" rx="2" fill="#a32b25"/>
+<text x="188" y="306" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Validation</text>
+<rect x="200" y="296" width="510.0" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="311" width="490.6" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="326" width="497.9" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="341" width="1.5" height="12" rx="2" fill="#a32b25"/>
+<text x="188" y="386" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Resource timing</text>
+<rect x="200" y="376" width="404.4" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="391" width="384.9" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="406" width="397.1" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="421" width="174.9" height="12" rx="2" fill="#a32b25"/>
+<text x="188" y="466" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Engagement</text>
+<rect x="200" y="456" width="505.1" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="471" width="485.7" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="486" width="493.0" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="501" width="133.6" height="12" rx="2" fill="#a32b25"/>
+<text x="188" y="546" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Agency</text>
+<rect x="200" y="536" width="476.0" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="551" width="459.0" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="566" width="463.9" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="581" width="274.4" height="12" rx="2" fill="#a32b25"/>
+<text x="188" y="626" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5" fill="#14181d" text-anchor="end">Risk recognition</text>
+<rect x="200" y="616" width="401.9" height="12" rx="2" fill="#1f6b4a"/>
+<rect x="200" y="631" width="401.9" height="12" rx="2" fill="#2f6f8f"/>
+<rect x="200" y="646" width="401.9" height="12" rx="2" fill="#8a6410"/>
+<rect x="200" y="661" width="480.9" height="12" rx="2" fill="#a32b25"/>
+<rect x="200" y="10" width="11" height="11" rx="2" fill="#1f6b4a"/><text x="216" y="20" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" fill="#5f6a76">sentinel-v2</text>
+<rect x="311.4" y="10" width="11" height="11" rx="2" fill="#2f6f8f"/><text x="327.4" y="20" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" fill="#5f6a76">helpmax-v1</text>
+<rect x="415.4" y="10" width="11" height="11" rx="2" fill="#8a6410"/><text x="431.4" y="20" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" fill="#5f6a76">concordia-v1</text>
+<rect x="534.2" y="10" width="11" height="11" rx="2" fill="#a32b25"/><text x="550.2" y="20" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" fill="#5f6a76">bastion-v0</text>
+</svg>
