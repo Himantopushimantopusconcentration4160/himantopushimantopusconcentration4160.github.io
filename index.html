@@ -126,7 +126,7 @@
             See the threat intelligence atlas
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="lane__cv" href="assets/cv/Brenda-Ong-CV-Trust-and-Safety.pdf">
+          <a class="lane__cv" href="assets/cv/Brenda-Ong-CV-Trust-and-Safety.pdf" data-cv="assets/cv/Brenda-Ong-CV-Trust-and-Safety.pdf" data-cv-name="Trust &amp; Safety CV">
             Download CV
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1v10m0 0L4 7m4 4l4-4M1 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -146,7 +146,7 @@
             See the operations simulator
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="lane__cv" href="assets/cv/Brenda-Ong-CV-Strategy-and-Operations.pdf">
+          <a class="lane__cv" href="assets/cv/Brenda-Ong-CV-Strategy-and-Operations.pdf" data-cv="assets/cv/Brenda-Ong-CV-Strategy-and-Operations.pdf" data-cv-name="Strategy &amp; Operations CV">
             Download CV
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1v10m0 0L4 7m4 4l4-4M1 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -166,7 +166,7 @@
             See the crisis comms war-game
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11m0 0L9 4m4 4l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="lane__cv" href="assets/cv/Brenda-Ong-CV-Communications-and-Policy.pdf">
+          <a class="lane__cv" href="assets/cv/Brenda-Ong-CV-Communications-and-Policy.pdf" data-cv="assets/cv/Brenda-Ong-CV-Communications-and-Policy.pdf" data-cv-name="Communications &amp; Policy CV">
             Download CV
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1v10m0 0L4 7m4 4l4-4M1 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -724,6 +724,48 @@
 
 </main>
 
+
+<!-- ============ CV DOWNLOAD GATE ============ -->
+<div class="gate" id="cv-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate__panel">
+    <div class="gate__eyebrow">Requesting the <span data-gate-cv>CV</span></div>
+    <h2 id="gate-title">Who am I sending this to?</h2>
+    <p class="gate__lead">
+      Happy to share it — I just like knowing who's reading. Takes ten seconds,
+      and I won't ask again on this device.
+    </p>
+    <form novalidate>
+      <div class="gate__field">
+        <label for="gate-name">Name</label>
+        <input id="gate-name" name="gateName" type="text" autocomplete="name" required>
+      </div>
+      <div class="gate__field">
+        <label for="gate-email">Email</label>
+        <input id="gate-email" name="gateEmail" type="email" autocomplete="email" required>
+      </div>
+      <div class="gate__field">
+        <label for="gate-company">Company or organisation <span class="opt">— optional</span></label>
+        <input id="gate-company" name="gateCompany" type="text" autocomplete="organization">
+      </div>
+      <div class="gate__field">
+        <label for="gate-role">Role you have in mind <span class="opt">— optional</span></label>
+        <input id="gate-role" name="gateRole" type="text">
+      </div>
+      <p class="gate__error" role="alert"></p>
+      <div class="gate__actions">
+        <button class="btn" type="submit">Download CV</button>
+        <button class="gate__cancel" type="button" data-gate-close>Not now</button>
+      </div>
+    </form>
+    <p class="gate__note">
+      Your details come to me only, so I know who's looking. They aren't added to
+      any mailing list, sold, or shared. Questions:
+      <a href="mailto:bihuiong@outlook.com" style="color:var(--accent-deep)">bihuiong@outlook.com</a>.
+    </p>
+  </div>
+</div>
+
+<script src="assets/js/cv-gate.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

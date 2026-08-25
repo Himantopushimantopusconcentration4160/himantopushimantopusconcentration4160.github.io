@@ -718,3 +718,70 @@ figcaption {
   .dark p, .dark h2, .dark h3, .award b, .award span, .art { color: #000 !important; }
   .section { padding-block: 1.5rem; }
 }
+
+/* ---------- CV download gate ---------- */
+.gate {
+  position: fixed; inset: 0; z-index: 300;
+  display: none; align-items: center; justify-content: center;
+  padding: 1.25rem;
+  background: rgba(23, 20, 15, .55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+.gate.is-open { display: flex; }
+
+.gate__panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  width: min(460px, 100%);
+  max-height: 92vh; overflow-y: auto;
+  padding: clamp(1.5rem, 4vw, 2.1rem);
+  box-shadow: 0 24px 60px rgba(23, 20, 15, .22);
+  animation: gateIn .28s var(--ease);
+}
+@keyframes gateIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.gate__eyebrow {
+  font-family: var(--font-mono); font-size: .68rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .7rem;
+}
+.gate__panel h2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  letter-spacing: -0.03em; margin-bottom: .6rem;
+}
+.gate__lead { font-size: .92rem; color: var(--ink-2); margin-bottom: 1.35rem; line-height: 1.55; }
+
+.gate__field { margin-bottom: .85rem; }
+.gate__field label {
+  display: block; font-size: .78rem; font-weight: 500;
+  color: var(--ink-2); margin-bottom: .32rem;
+}
+.gate__field label .opt { color: var(--ink-3); font-weight: 400; }
+.gate__field input {
+  width: 100%; font: inherit; font-size: .93rem;
+  padding: .62rem .78rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: #fff; color: var(--ink);
+  transition: border-color .2s var(--ease);
+}
+.gate__field input:focus { outline: none; border-color: var(--accent); }
+
+.gate__error { color: #A6321F; font-size: .84rem; min-height: 1.2em; margin-bottom: .4rem; }
+
+.gate__actions { display: flex; gap: .6rem; align-items: center; margin-top: .35rem; }
+.gate__actions .btn { flex: none; }
+.gate__cancel {
+  background: none; border: 0; font: inherit; font-size: .86rem;
+  color: var(--ink-3); cursor: pointer; padding: .5rem .25rem;
+  border-bottom: 1px solid transparent;
+}
+.gate__cancel:hover { color: var(--ink); border-bottom-color: var(--line); }
+
+.gate__note {
+  margin-top: 1.15rem; padding-top: 1rem;
+  border-top: 1px solid var(--line-soft);
+  font-size: .76rem; color: var(--ink-3); line-height: 1.5;
+}
