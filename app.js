@@ -55,7 +55,7 @@ function shell(){
   app.innerHTML =
    '<div class="disclose">이 사이트는 쿠팡, 여기어때, 마이리얼트립, 토스 등으로부터 일정액의 수수료를 제공받습니다.</div>'+
       '<header class="top"><div class="wrap">'+
-     '<div class="bar"><a class="logo" href="#" id="home"><i>다</i>'+SITE+'</a></div>'+
+     '<div class="bar"><a class="logo" href="#" id="home"><i>다</i>'+SITE+'</a><button class="install" id="install" hidden>📲 앱 설치</button></div>'+
      '<label class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'+
        '<input id="q" type="search" placeholder="어디로 떠나볼까요? 숙소·지역 검색" autocomplete="off" aria-label="숙소 검색"></label>'+
      '<nav class="chips" id="chips" aria-label="지역 필터"></nav>'+
@@ -82,6 +82,8 @@ function shell(){
   var qi=document.getElementById("q"); qi.addEventListener("input",function(){ state.q=qi.value; renderGrid(); });
   document.getElementById("home").addEventListener("click",function(e){ e.preventDefault(); state.q="";qi.value="";state.region="전체";state.status="open";saveUi();render();window.scrollTo({top:0,behavior:"smooth"}); });
   document.getElementById("grid").addEventListener("click",onGridClick);
+  document.getElementById("install").addEventListener("click",onInstall);
+  updateInstall();
   document.getElementById("today").addEventListener("click",function(e){ var b=e.target.closest("[data-go]"); if(!b) return; state.status=b.dataset.go; saveUi(); render(); var t=document.getElementById("seg"); if(t) t.scrollIntoView({behavior:"smooth",block:"center"}); });
 }
 
@@ -109,7 +111,7 @@ function card(it){
     '<div class="actions card-act">'+
       (view?'<a class="btn view" href="'+esc(view)+'" target="_blank" rel="noopener noreferrer sponsored">🏨 숙소보기</a>':'<span class="btn disabled">숙소보기</span>')+
       (closed?'<span class="btn disabled">마감</span>':(apply?'<a class="btn apply" href="'+esc(apply)+'" target="_blank" rel="noopener noreferrer">✍️ 신청</a>':'<span class="btn disabled">준비중</span>'))+
-    '</div></article>';
+    '</div>'+(closed?'':'<button class="alarm" data-act="alarm" data-id="'+esc(it.id)+'">⏰ 마감 알림 받기</button>')+'</article>';
 }
 
 function renderGrid(){
@@ -152,10 +154,50 @@ function mountAds(){}
 function onGridClick(e){
   var b=e.target.closest("[data-act]"); if(!b) return;
   if(b.dataset.act==="fav"){ e.preventDefault(); toggleFav(b.dataset.id); renderGrid(); renderToday(); return; }
+  if(b.dataset.act==="alarm"){ var it=state.items.find(function(x){return x.id===b.dataset.id;}); if(it) addAlarm(it); return; }
 }
 
 var toastT;
 function toast(msg){ var t=document.querySelector(".toast"); if(!t){ t=document.createElement("div"); t.className="toast"; document.body.appendChild(t);} t.textContent=msg; clearTimeout(toastT); toastT=setTimeout(function(){t.remove();},2600); }
+
+/* ---------- 마감 알림: 휴대폰 캘린더에 일정 추가 (.ics) ---------- */
+function icsText(s){ return String(s||"").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\r?\n/g,"\\n"); }
+function addAlarm(it){
+  var en=parseDate(it.end); if(!en){ toast("마감일 정보가 없어요"); return; }
+  var d1=ymd(en).replace(/-/g,""), nx=new Date(en.getTime()+864e5), d2=ymd(nx).replace(/-/g,"");
+  var stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
+  var url=location.origin+location.pathname;
+  var desc="🎁 "+(it.benefit||"")+"\n✍️ 신청: "+(it.applyUrl||"")+"\n🏨 숙소보기: "+(it.viewUrl||"")+"\n— 다꾸 체험단 모음 "+url;
+  var lines=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//dagguu//dakku//KO","CALSCALE:GREGORIAN","METHOD:PUBLISH",
+    "BEGIN:VEVENT","UID:"+it.id+"@dagguu.github.io","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+d1,"DTEND;VALUE=DATE:"+d2,
+    "SUMMARY:"+icsText("🚨 체험단 마감 · "+it.name),"DESCRIPTION:"+icsText(desc),"URL:"+(it.applyUrl||url),
+    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsText("내일 마감! "+it.name+" 체험단 신청하셨나요?"),"TRIGGER:-PT15H","END:VALARM",
+    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsText("오늘 마감! "+it.name),"TRIGGER:PT9H","END:VALARM",
+    "END:VEVENT","END:VCALENDAR"];
+  var blob=new Blob([lines.join("\r\n")],{type:"text/calendar;charset=utf-8"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="dakku-"+it.id+".ics";
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1500);
+  toast("📅 캘린더에서 '추가'를 누르면 마감 전날 아침 9시에 알려드려요");
+}
+
+/* ---------- 홈 화면 앱 설치 (PWA) ---------- */
+var deferredPrompt=null;
+function isStandalone(){ return (window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true; }
+function isIOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1); }
+function updateInstall(){ var b=document.getElementById("install"); if(b) b.hidden=isStandalone()||!(deferredPrompt||isIOS()||/android/i.test(navigator.userAgent)); }
+window.addEventListener("beforeinstallprompt",function(e){ e.preventDefault(); deferredPrompt=e; updateInstall(); });
+window.addEventListener("appinstalled",function(){ deferredPrompt=null; updateInstall(); toast("🎉 홈 화면에 다꾸 앱이 추가됐어요"); });
+function onInstall(){
+  if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.finally(function(){ deferredPrompt=null; updateInstall(); }); return; }
+  var bg=document.createElement("div"); bg.className="sheet-bg";
+  var steps=isIOS()
+    ? '<ol class="howto"><li>화면 아래(또는 위)의 <b>공유 버튼 <span class="ico">⬆️</span></b>을 눌러요</li><li>목록을 내려 <b>홈 화면에 추가</b>를 눌러요</li><li>오른쪽 위 <b>추가</b>를 누르면 끝! 🎉</li></ol><p class="hint">아이폰은 <b>Safari</b>에서 열어야 추가할 수 있어요. 인스타·카톡 안에서 보고 있다면 ‘Safari로 열기’를 먼저 눌러주세요.</p>'
+    : '<ol class="howto"><li>브라우저 오른쪽 위 <b>⋮ 메뉴</b>를 눌러요</li><li><b>앱 설치</b> 또는 <b>홈 화면에 추가</b>를 눌러요</li><li><b>설치</b>를 누르면 끝! 🎉</li></ol><p class="hint">인스타·카톡 안에서 보고 있다면 ‘다른 브라우저로 열기’(크롬)를 먼저 눌러주세요.</p>';
+  bg.innerHTML='<div class="sheet"><h2>📲 다꾸 앱 설치하기</h2><p class="lead">홈 화면에 추가하면 앱처럼 바로 열 수 있어요. 매일 아침 새 체험단을 확인해보세요!</p>'+steps+'<div class="actions" style="grid-template-columns:1fr"><button class="btn solid" data-x>확인</button></div></div>';
+  document.body.appendChild(bg);
+  bg.addEventListener("click",function(e){ if(e.target===bg||e.target.hasAttribute("data-x")) bg.remove(); });
+}
+if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); }
 
 shell(); render();
 fetch("data.json?v="+Date.now().toString(36).slice(0,-3),{cache:"no-cache"}).then(function(r){ return r.json(); }).then(function(d){

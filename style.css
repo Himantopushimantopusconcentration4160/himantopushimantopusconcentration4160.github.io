@@ -158,3 +158,12 @@ footer .wrap{padding-top:24px;padding-bottom:32px}
 .adminbar{background:var(--ink);color:#fff;font-size:13px;padding:9px 0}
 .adminbar .wrap{display:flex;justify-content:space-between;gap:10px;align-items:center}
 @media(max-width:759px){.badge{top:8px;left:8px;font-size:11px;padding:4px 8px}}
+
+/* 앱 설치 · 마감 알림 */
+.install{border:0;background:var(--ig2);color:#fff;border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(106,63,200,.25)}
+.alarm{margin-top:6px;width:100%;border:1px dashed #d9cdf7;background:#faf8ff;color:#5b3fb0;border-radius:var(--r-btn);height:34px;font-size:12.5px;font-weight:700;cursor:pointer}
+.alarm:active{transform:scale(.98)}
+.sheet .lead{margin:-6px 0 12px;font-size:14px;color:var(--ink-2);line-height:1.5}
+.howto{margin:0 0 12px;padding-left:20px;font-size:15px;line-height:1.9}
+.howto b{color:var(--pink)}
+.hint{margin:0 0 14px;font-size:12.5px;color:var(--muted);line-height:1.5;background:var(--soft);border-radius:10px;padding:9px 11px}
